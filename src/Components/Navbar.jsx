@@ -1,7 +1,14 @@
+import { NavLink  } from 'react-router-dom';
+
 const Navbar = () => {
 	return (
 		<nav>
-			<p>this is navbar</p>
+			<NavLink activeClassName='selected' to='/Rockets'>
+				Rockets
+			</NavLink>
+			<NavLink activeClassName='selected' to='/Missions'>
+				Missions
+			</NavLink>
 		</nav>
 	);
 };
