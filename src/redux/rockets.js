@@ -15,5 +15,17 @@ export const setReservation = payload => ({
  payload,
 });
 
+export const cancelReservation = payload => ({
+ type: CANCEL_RESVATION,
+ payload,
+});
+
+export const loadRockets = () => async dispatch => {
+ const rockets = await getRockets();
+ if (rockets) {
+  dispatch(setRockets(rockets));
+ }
+};
+
 
 
