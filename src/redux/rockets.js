@@ -10,3 +10,10 @@ const setRockets = payload => ({
  payload,
 });
 
+export const setReservation = payload => ({
+ type: CANCEL_RESVATION,
+ payload,
+});
+
+
+
