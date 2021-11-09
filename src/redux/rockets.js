@@ -5,5 +5,8 @@ const SET_RESERVATION = 'rocketStore/rockets/SET_RESERVATION';
 const CANCEL_RESVATION = 'rocketStore/rockets/CANCEL_RESERVATION';
 const initialState = [];
 
-
+const setRockets = payload => ({
+ type: SET_ROCKETS,
+ payload,
+});
 
