@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadRockets, setReservation, cancelReservation } from '../../redux/rockets';
 
+import './rockets.css';
 
 const Rockets = () => {
   const dispatch = useDispatch();
-  const rockets = useSelector(state => state.rocketsReducer);
+  const rockets = useSelector((state) => state.rocketsReducer);
 
   useEffect(
     () => {
@@ -25,7 +26,7 @@ const Rockets = () => {
   return (
     <div className="rocket-wrapper">
       <ul className="ul-rocket">
-        {rockets.map(rocket => (
+        {rockets.map((rocket) => (
           <li key={rocket.id} className="li-rocket">
             <div className="img-rocket"><img src={rocket.img} alt="expacex rocket" /></div>
             <div className="rocket-info">
@@ -47,4 +48,3 @@ const Rockets = () => {
 };
 
 export default Rockets;
-
