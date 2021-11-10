@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
+import { Badge, Button, Table } from 'react-bootstrap';
 import store from '../../redux/configureStore';
 import { fetchMissions, joinMission, leaveMission } from '../../redux/missions/missions';
 
@@ -28,13 +27,9 @@ const Missions = () => {
       <td>{item.description}</td>
       <td>
         {item.reserved ? (
-          <Button variant="success">
-            Active Member
-          </Button>
+          <Badge bg="success">Active Member</Badge>
         ) : (
-          <Button variant="secondary">
-            Not A Member
-          </Button>
+          <Badge bg="secondary">Not A Member</Badge>
         )}
       </td>
       <td>{item.status}</td>
