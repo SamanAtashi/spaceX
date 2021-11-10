@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import store from '../../redux/configureStore';
-import { fetchMissions, joinMission } from '../../redux/missions/missions';
+import { fetchMissions, joinMission, leaveMission } from '../../redux/missions/missions';
 
 const Missions = () => {
   const dispatch = useDispatch();
@@ -14,8 +14,12 @@ const Missions = () => {
   }, []);
 
   const joinMissionHandler = (id) => {
-    console.log(id);
     store.dispatch(joinMission(id));
+  };
+
+  const leaveMissionHandler = (id) => {
+    console.log(id);
+    store.dispatch(leaveMission(id));
   };
 
   const dosth = () => sth.map((item) => (
@@ -24,20 +28,32 @@ const Missions = () => {
       <td>{item.description}</td>
       <td>
         {item.reserved ? (
-          <Button variant="success">Joined</Button>
+          <Button variant="success">
+            Active Member
+          </Button>
         ) : (
-          <Button variant="secondary">Not joined</Button>
+          <Button variant="secondary">
+            Not A Member
+          </Button>
         )}
-
       </td>
       <td>{item.status}</td>
       <td>
-        <Button
-          variant="outline-secondary"
-          onClick={() => joinMissionHandler(item.mission_id)}
-        >
-          Join Mission
-        </Button>
+        {item.reserved ? (
+          <Button
+            variant="outline-danger"
+            onClick={() => leaveMissionHandler(item.mission_id)}
+          >
+            Leave Mission
+          </Button>
+        ) : (
+          <Button
+            variant="outline-secondary"
+            onClick={() => joinMissionHandler(item.mission_id)}
+          >
+            Join Mission
+          </Button>
+        )}
       </td>
     </tr>
   ));

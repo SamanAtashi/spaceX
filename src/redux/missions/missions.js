@@ -11,6 +11,7 @@ export const fetchMissions = () => async (dispatch) => {
 };
 
 export const joinMission = (id) => ({ type: JOINED, id });
+export const leaveMission = (id) => ({ type: NOT_JOINED, id });
 
 const initialState = [];
 const reducer = (state = initialState, action) => {
@@ -20,7 +21,7 @@ const reducer = (state = initialState, action) => {
     case JOINED:
       return state.map((mission) => ((mission.mission_id === action.id) ? { ...mission, reserved: true } : { ...mission }));
     case NOT_JOINED:
-      return [...state, ...action.payload];
+      return state.map((mission) => ((mission.mission_id === action.id) ? { ...mission, reserved: false } : { ...mission }));
 
     default:
       return state;
