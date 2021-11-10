@@ -1,23 +1,17 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Badge, Button, Table } from 'react-bootstrap';
 import store from '../../redux/configureStore';
-import { fetchMissions, joinMission, leaveMission } from '../../redux/missions/missions';
+import { joinMission, leaveMission } from '../../redux/missions/missions';
 
 const Missions = () => {
-  const dispatch = useDispatch();
   const sth = useSelector((state) => state.missions);
-
-  useEffect(() => {
-    dispatch(fetchMissions());
-  }, []);
 
   const joinMissionHandler = (id) => {
     store.dispatch(joinMission(id));
   };
 
   const leaveMissionHandler = (id) => {
-    console.log(id);
     store.dispatch(leaveMission(id));
   };
 
