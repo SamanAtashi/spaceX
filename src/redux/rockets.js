@@ -40,6 +40,23 @@ const reducer = (state = initialState, action) => {
        };
      });
      return state.concat(saved);
+    
+    }
+    case SET_RESERVATION:
+      return state.map(rocket => {
+        if (rocket.id !== action.payload) return rocket;
+        return { ...rocket, reserved: true };
+      });
+    case CANLCEL_RESERVATION:
+      return state.map(rocket => {
+        if (rocket.id !== action.payload) return rocket;
+        return { ...rocket, reserved: false };
+      });
+    default:
+      return state;
+  }
+};
 
+export default reducer;
 
 
