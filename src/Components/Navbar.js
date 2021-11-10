@@ -21,6 +21,12 @@ const Navbar = () => {
       >
         Missions
       </NavLink>
+      <NavLink
+        style={({ isActive }) => (isActive ? activeStyle : undefined)}
+        to="/MyProfile"
+      >
+        My Profile
+      </NavLink>
     </nav>
   );
 };
