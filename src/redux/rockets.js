@@ -27,5 +27,19 @@ export const loadRockets = () => async dispatch => {
  }
 };
 
+const reducer = (state = initialState, action) => {
+ switch (action.type) {
+   case SET_ROCKETS: {
+     const saved = Object.entries(action.payload).map(([id, rocket]) => {
+       const { description, rocket_name, flickr_images: [img] } = rocket;
+       return {
+         id,
+         description,
+         rocket_name,
+         img,
+       };
+     });
+     return state.concat(saved);
+
 
 
