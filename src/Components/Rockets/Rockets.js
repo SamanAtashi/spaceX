@@ -13,3 +13,11 @@ const Rockets = () => {
     },
     [],
   );
+
+  const handleReservation = (id, reserved) => {
+    if (reserved) {
+      dispatch(cancelReservation(id));
+    } else {
+      dispatch(setReservation(id));
+    }
+  };
