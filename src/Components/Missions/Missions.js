@@ -1,10 +1,5 @@
-/* eslint-disable no-tabs */
-/* eslint-disable no-mixed-spaces-and-tabs */
-/* eslint-disable react/button-has-type */
 import React from 'react';
 import { useSelector } from 'react-redux';
-// import Table from 'react-bootstrap/Table';
-// import { Badge, Button } from 'react-bootstrap';
 import store from '../../redux/configureStore';
 import { joinMission, leaveMission } from '../../redux/missions/missions';
 
@@ -22,9 +17,7 @@ const Missions = () => {
   const dosth = () => sth.map((item, idx) => (
     <tr
       key={item.mission_id}
-      className={`${
-				  idx % 2 ? 'bg-gray-200' : 'bg-white'
-      }  border border-gray-400`}
+      className={`${idx % 2 ? 'bg-gray-200' : 'bg-white'}  border border-gray-400`}
     >
       <td className="border border-gray-400 text-center">
         {item.mission_name}
@@ -43,24 +36,10 @@ const Missions = () => {
           </p>
         )}
       </td>
-      {/* <td className="border border-gray-400">{item.status}</td> */}
       <td className="border border-gray-400 text-center px-4 ">
-        {item.reserved ? (
-          <button
-            className="border bg-red-500 text-white rounded-md w-max px-3 py-2 "
-            onClick={() => leaveMissionHandler(
-							    item.mission_id,
-							  )}
-          >
-            Leave Mission
-          </button>
+        {item.reserved ? (<button type="button" className="border bg-red-500 text-white rounded-md w-max px-3 py-2 " onClick={() => leaveMissionHandler(item.mission_id)}> Leave Mission </button>
         ) : (
-          <button
-            className="border border-gray-500 text-gray-700 rounded-md w-max px-3 py-2"
-            onClick={() => joinMissionHandler(
-							    item.mission_id,
-							  )}
-          >
+          <button type="button" className="border border-gray-500 text-gray-700 rounded-md w-max px-3 py-2" onClick={() => joinMissionHandler(item.mission_id)}>
             Join Mission
           </button>
         )}
