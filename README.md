@@ -11,9 +11,6 @@ The Missions section displays a list of current missions along with their brief 
 My Profile
 The My Profile section displays all reserved rockets and space missions.
 
-![screeshoot](https://github.com/microverseinc/curriculum-react-redux/blob/main/group-project/images/space-travelers__rockets.png)
-
-
 ![screenshot](/Assets/Screenshot1.png)
 ![screenshot](/Assets/Screenshot2.png)
 ![screenshot](/Assets/Screenshot3.png)
