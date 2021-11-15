@@ -1,44 +1,69 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { loadRockets, setReservation, cancelReservation } from '../../redux/rockets';
-
-import './rockets.css';
+/* eslint-disable no-tabs */
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable react/button-has-type */
+import React from 'react';
+import { useSelector } from 'react-redux';
+import store from '../../redux/configureStore';
+import { setReservation, cancelReservation } from '../../redux/rockets/rockets';
 
 const Rockets = () => {
-  const dispatch = useDispatch();
-  const rockets = useSelector((state) => state.rocketsReducer);
-
-  useEffect(
-    () => {
-      if (rockets.length === 0) dispatch(loadRockets());
-    },
-    [],
-  );
+  //   const dispatch = useDispatch();
+  const rockets = useSelector((state) => state.rockets);
 
   const handleReservation = (id, reserved) => {
     if (reserved) {
-      dispatch(cancelReservation(id));
+      store.dispatch(cancelReservation(id));
     } else {
-      dispatch(setReservation(id));
+      store.dispatch(setReservation(id));
     }
   };
 
   return (
-    <div className="rocket-wrapper">
-      <ul className="ul-rocket">
+    <div>
+      <ul className="flex flex-col my-5 space-y-10">
         {rockets.map((rocket) => (
-          <li key={rocket.id} className="li-rocket">
-            <div className="img-rocket"><img src={rocket.img} alt="expacex rocket" /></div>
-            <div className="rocket-info">
-              <span className="rocket-name span">{rocket.rocket_name}</span>
-              <span className="rocket-description span">{rocket.description}</span>
-              <button
-                onClick={() => handleReservation(rocket.id, rocket.reserved)}
-                className={rocket.reserved ? 'reserved-rocket' : 'no-reserved-rocket'}
-                type="button"
-              >
-                {rocket.reserved ? 'Cancel Reservation' : 'Reserve Rocked'}
-              </button>
+          <li
+            key={rocket.id}
+            className=" w-full h-80 flex justify-between items-start "
+          >
+            <div className="w-2/5 lg:w-1/4 h-full">
+              <img
+                src={rocket.img}
+                alt="expacex rocket"
+                className="h-full w-full"
+              />
+            </div>
+            <div className="flex flex-col w-3/4 justify-between h-full  pl-4 ">
+              <span className="text-lg font-semibold">
+                {rocket.rocket_name}
+              </span>
+              <span className="">
+                {rocket.description}
+              </span>
+              {rocket.reserved
+                ? (
+                  <button
+                    className="bg-gray-100-500 text-gray-600 border  text-base text-center rounded-md py-1 px-3 w-max hover:shadow-lg"
+                    onClick={() => handleReservation(
+								    rocket.id,
+								    rocket.reserved,
+								  )}
+                  >
+                    Cancel Reservation
+                  </button>
+                ) : (
+                  <button
+                    className="bg-blue-500 text-white text-base text-center rounded-md py-1 px-3 w-max"
+                    onClick={() => handleReservation(
+								    rocket.id,
+								    rocket.reserved,
+								  )}
+                  >
+                    {rocket.reserved
+								  ? 'Cancel Reservation'
+								  : 'Reserve Rocked'}
+                  </button>
+                )}
             </div>
           </li>
         ))}

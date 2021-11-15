@@ -1,33 +1,35 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import './Navbar.css';
+import { NavLink } from 'react-router-dom';
+
 import logo from './planet.png';
 
-const NavBar = ({ title, routes }) => (
-  <nav className="Navbar">
-    <ul className="nav-list">
-      <li className="brand">
-        <Link to="/" className="nav-brand">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="nav-title">{title}</h1>
-        </Link>
-      </li>
-      { routes.map(({ name, path }) => (
-        <li key={path} className="nav-links">
-          <NavLink className="links" exact="true" to={path}>{name}</NavLink>
-        </li>
-      ))}
-    </ul>
+const NavBar = () => (
+  <nav className="flex justify-between items-center border-b-2 w-full h-20">
+    <div className="h-12 flex justify-between items-center space-x-4">
+      <img src={logo} alt="logo" className="w-12" />
+      <h2 className="text-3xl">Space Travelers Hub</h2>
+    </div>
+    <div className="flex items-center space-x-4 text-blue-500">
+      <NavLink
+        className={({ isActive }) => (isActive ? 'underline' : null)}
+        to="/"
+      >
+        Rockets
+      </NavLink>
+      <NavLink
+        className={({ isActive }) => (isActive ? 'underline' : null)}
+        to="/Missions"
+      >
+        Missions
+      </NavLink>
+      <NavLink
+        className={({ isActive }) => (isActive ? 'underline' : null)}
+        to="/MyProfile"
+      >
+        My Profile
+      </NavLink>
+    </div>
   </nav>
 );
-
-NavBar.propTypes = {
-  title: PropTypes.string.isRequired,
-  routes: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    path: PropTypes.string.isRequired,
-  })).isRequired,
-};
 
 export default NavBar;
